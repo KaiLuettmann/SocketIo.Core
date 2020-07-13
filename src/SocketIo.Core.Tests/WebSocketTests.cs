@@ -1,17 +1,16 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SocketIo.SocketTypes;
+﻿using SocketIo.SocketTypes;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace SocketIo.Core.Tests
 {
-	[TestClass]
+	using Xunit;
+
 	public class WebSocketTests
 	{
 		//Tests cannot be ran with Run All as all but the first will fail due to the socket not being truly closed.
 
-		[TestMethod]
+		[Fact]
 		public async Task TestWebSocketAsync()
 		{
 			bool hit1 = false;
@@ -48,12 +47,12 @@ namespace SocketIo.Core.Tests
 			}
 			socket.Close();
 
-			Assert.IsTrue(hit1 && hit2);
+			Assert.True(hit1 && hit2);
 
 		}
 
 		//WebSockets apparently can't connect to themselves...
-		[TestMethod]
+		[Fact]
 		public void TestWebSocket_Server()
 		{
 			bool hit1 = false;
@@ -84,10 +83,10 @@ namespace SocketIo.Core.Tests
 			}
 			socket.Close();
 
-			Assert.IsTrue(hit1 && hit2);
+			Assert.True(hit1 && hit2);
 
 		}
-		[TestMethod]
+		[Fact]
 		public void TestWebSocket_Client()
 		{
 			ushort testPort = 45544;
@@ -100,7 +99,7 @@ namespace SocketIo.Core.Tests
 
 
 
-		[TestMethod]
+		[Fact]
 		public async Task TestDualSocketWebSocketPAsync()
 		{
 			bool hit1 = false;
@@ -141,11 +140,11 @@ namespace SocketIo.Core.Tests
 			socketSender.Close();
 			socketListener.Close();
 
-			Assert.IsTrue(hit1 && hit2);
+			Assert.True(hit1 && hit2);
 
 		}
 
-		[TestMethod]
+		[Fact]
 		public void TestDualSocketWebSocket()
 		{
 			bool hit1 = false;
@@ -187,7 +186,7 @@ namespace SocketIo.Core.Tests
 			socketSender.Close();
 			socketListener.Close();
 
-			Assert.IsTrue(hit1 && hit2);
+			Assert.True(hit1 && hit2);
 
 		}
 	}
